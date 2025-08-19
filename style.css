@@ -1,0 +1,128 @@
+:root {
+  --bg: #0b0c10;
+  --card: #111218;
+  --text: #e9ecf1;
+  --muted: #b7bec7;
+  --brand: #ff4d8d;
+  --brand-2: #7c4dff;
+  --line: #1c1f27;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap { width: min(1100px, 92%); margin-inline: auto; }
+
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(11,12,16,0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand {
+  color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: .2px;
+}
+
+.nav a, .nav button {
+  color: var(--muted); text-decoration: none; margin-left: 16px;
+  background: transparent; border: 0; cursor: pointer; font: inherit;
+}
+.nav a:hover, .nav button:hover { color: var(--text); }
+
+.hero {
+  padding: 48px 0 18px;
+  background: radial-gradient(1200px 500px at 20% -10%, rgba(255,77,141,.25), transparent 60%),
+              radial-gradient(900px 400px at 80% -20%, rgba(124,77,255,.25), transparent 60%);
+}
+.hero h1 { font-size: clamp(28px, 5vw, 42px); margin: 0 0 8px; }
+.hero p  { color: var(--muted); margin: 0 0 18px; }
+
+.search-row { display: flex; gap: 10px; }
+#toolSearch {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--line); background: #0e1016; color: var(--text);
+  outline: none;
+}
+
+.cards {
+  display: grid; gap: 18px; padding: 24px 0 40px;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1100px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px)  { .cards { grid-template-columns: 1fr; } }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px var(--shadow);
+  display: flex; flex-direction: column; gap: 10px;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.card:hover { transform: translateY(-2px); border-color: rgba(255,77,141,.4); }
+.card h2 { margin: 2px 0 4px; font-size: 18px; }
+.card p  { margin: 0; color: var(--muted); min-height: 44px; }
+.btn {
+  align-self: start;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  padding: 10px 14px; border-radius: 10px; color: #fff; text-decoration: none; font-weight: 600;
+  border: 0;
+}
+
+.about { padding-bottom: 60px; }
+.about p { color: var(--muted); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 18px 0 40px;
+  color: var(--muted);
+}
+
+/* Detail page layout */
+.page {
+  padding: 34px 0 60px;
+}
+.breadcrumb {
+  font-size: 14px; color: var(--muted); margin-bottom: 14px;
+}
+.panel {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.grid-2 {
+  display: grid; gap: 18px; grid-template-columns: 1.2fr .8fr;
+}
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+.label { display: block; margin: 10px 0 6px; color: var(--muted); font-size: 14px; }
+.input, select, textarea {
+  width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);
+  background: #0e1016; color: var(--text);
+}
+textarea { min-height: 120px; resize: vertical; }
+.actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+.small { font-size: 13px; color: var(--muted); }
+.output {
+  background: #0e1016; border: 1px dashed #2a2e38; border-radius: 12px; padding: 12px;
+  white-space: pre-wrap; min-height: 120px;
+}
+.badge {
+  display: inline-block; background: #171923; border: 1px solid #2a2e38; color: var(--muted);
+  padding: 4px 8px; border-radius: 999px; font-size: 12px; margin-right: 6px;
+}
