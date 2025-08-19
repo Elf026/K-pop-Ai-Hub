@@ -1,100 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K-Pop AI Tools</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-    }
-    header {
-      background: #ff4081;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .card h2 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #ff4081;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-    .card a:hover {
-      background: #e91e63;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>K-Pop AI Lab • 8 Free Tools</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <h1>8 K-Pop AI Tools</h1>
-    <p>Choose a tool to explore</p>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">K-Pop AI Lab</a>
+      <nav class="nav">
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+        <button id="themeToggle" aria-label="Toggle theme">○</button>
+      </nav>
+    </div>
   </header>
 
-  <div class="container">
-    <div class="card">
-      <h2>AI Lyric Translator</h2>
-      <p>Translate Korean lyrics fast.</p>
-      <a href="tool1.html">Explore</a>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>8 AI tools for K-Pop fans</h1>
+        <p>Free. Fast. Built for creativity.</p>
+        <div class="search-row">
+          <input id="toolSearch" type="search" placeholder="Search tools, try bias, name, playlist" />
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="cards wrap">
+      <!-- Card 1 -->
+      <article class="card" data-tags="outfit style fashion analyzer">
+        <h2>Idol Outfit Style Creator</h2>
+        <p>Plan outfits inspired by your bias. Get color, vibe, and accessory tips.</p>
+        <a class="btn" href="tool1.html">Open</a>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" data-tags="chat bias chatbot conversation">
+        <h2>Bias Chat</h2>
+        <p>Roleplay safe, fan-friendly chats. Prebuilt lines, tone, and prompts.</p>
+        <a class="btn" href="tool2.html">Open</a>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" data-tags="name stage generator kpop">
+        <h2>Stage, K-Pop Name Generator</h2>
+        <p>Create stage names by vibe, syllables, and concept.</p>
+        <a class="btn" href="tool3.html">Open</a>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" data-tags="compatibility quiz love match">
+        <h2>Idol Compatibility Quiz</h2>
+        <p>Answer quick questions. See a playful score with tips.</p>
+        <a class="btn" href="tool4.html">Open</a>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card" data-tags="aegyo caption instagram tiktok">
+        <h2>K-Pop Aegyo Caption Maker</h2>
+        <p>Get cute, short captions with emoji options.</p>
+        <a class="btn" href="tool5.html">Open</a>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card" data-tags="look alike finder face twin">
+        <h2>Idol Look-Alike Finder</h2>
+        <p>Describe your features. Get top three idol look matches.</p>
+        <a class="btn" href="tool6.html">Open</a>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card" data-tags="playlist music songs spotify youtube">
+        <h2>K-Pop Playlist Maker</h2>
+        <p>Pick mood and era. Get a ready list to copy.</p>
+        <a class="btn" href="tool7.html">Open</a>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card" data-tags="nickname pet name fandom">
+        <h2>Idol Nickname Creator</h2>
+        <p>Mix traits and vibes. Get catchy nicknames fast.</p>
+        <a class="btn" href="tool8.html">Open</a>
+      </article>
+    </section>
+
+    <section id="about" class="wrap about">
+      <h2>About this site</h2>
+      <p>Simple tools for fans. 100 percent client side. No signup. No tracking.</p>
+      <p>Built with plain HTML, CSS, and JavaScript. Works on GitHub Pages.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> K-Pop AI Lab. For fun and education.</p>
     </div>
-    <div class="card">
-      <h2>AI Fan Art Generator</h2>
-      <p>Create K-pop style fan art.</p>
-      <a href="tool2.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI K-Pop Quiz Maker</h2>
-      <p>Make trivia questions easily.</p>
-      <a href="tool3.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI Bias Wallpaper Maker</h2>
-      <p>Custom wallpapers of your bias.</p>
-      <a href="tool4.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI Choreography Assistant</h2>
-      <p>Learn dance moves step by step.</p>
-      <a href="tool5.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI Vocal Training Tool</h2>
-      <p>Get feedback on singing.</p>
-      <a href="tool6.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI Fandom Chatbot</h2>
-      <p>Chat with AI idols.</p>
-      <a href="tool7.html">Explore</a>
-    </div>
-    <div class="card">
-      <h2>AI K-Drama Recommender</h2>
-      <p>Suggest dramas by bias group.</p>
-      <a href="tool8.html">Explore</a>
-    </div>
-  </div>
+  </footer>
 </body>
 </html>
