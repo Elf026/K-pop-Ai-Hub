@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idol Look-Alike Finder</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Idol Look-Alike Finder</nav>
+  <h1>Find your idol look match</h1>
+  <p class="small">No photos. Describe features. Get three close picks.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Face shape</label>
+      <select id="shape">
+        <option>Round</option><option>Oval</option><option>Heart</option><option>Square</option>
+      </select>
+
+      <label class="label">Key features</label>
+      <textarea id="features" placeholder="monolids, small lips, straight brows, sharp jaw"></textarea>
+
+      <label class="label">Hair vibe</label>
+      <select id="hair">
+        <option>Short</option><option>Medium</option><option>Long</option><option>Dyed</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn" id="run">Suggest</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Matches</div>
+      <div id="out" class="output"></div>
+      <p class="small">Text only. For fun.</p>
+    </aside>
+  </div>
+</main>
+
+<script>
+$("#run").addEventListener("click", () => {
+  const s = $("#shape").value + "|" + $("#features").value + "|" + $("#hair").value;
+  const r = seeded(s);
+  const idols = [
+    "Jungkook","V","Jimin","Jin","RM","Suga","J-Hope",
+    "Jennie","Jisoo","Lisa","Rosé",
+    "Karina","Winter","Hanni","Minji","Haerin","Danielle",
+    "Cha Eun-woo","Taeyeon","IU","Sana","Momo","Tzuyu",
+    "Chaeryeong","Yeji","Ryujin","Yuna"
+  ];
+  const picks = new Set();
+  while (picks.size < 3) picks.add(idols[Math.floor(r()*idols.length)]);
+  $("#out").textContent = Array.from(picks).map((n,i)=>`${i+1}. ${n}`).join("\n");
+});
+</script>
+</body>
+</html>
