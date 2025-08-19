@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idol Nickname Creator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Idol Nickname Creator</nav>
+  <h1>Create catchy nicknames</h1>
+  <p class="small">Add traits and bias. Get ten options.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Traits, comma separated</label>
+      <input class="input" id="traits" placeholder="cute, fast, dancer" />
+
+      <label class="label">Bias or group, optional</label>
+      <input class="input" id="bias" placeholder="e.g., Lisa" />
+
+      <div class="actions">
+        <button class="btn" id="run">Create</button>
+        <button class="btn" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Nicknames</div>
+      <div id="out" class="output"></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+$("#run").addEventListener("click", () => {
+  const traits = $("#traits").value.split(",").map(s=>s.trim()).filter(Boolean);
+  const bias = $("#bias").value.trim();
+  const seed = seeded(traits.join("-") + "|" + bias);
+  const ends = ["ie","y","chu","chan","rina","boo","bear","bun","kitty","luv","pop","star"];
+  const caps = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const base = traits.length ? traits : ["spark","moon","rose","glow","vibe","mint","pearl"];
+  const list = new Set();
+  while (list.size < 10) {
+    const a = caps(base[Math.floor(seed()*base.length)].replace(/[^a-z]/gi,""));
+    const b = ends[Math.floor(seed()*ends.length)];
+    const c = bias ? caps(bias.replace(/[^a-z]/gi,"").slice(0,3)) : "";
+    const name = (seed()>.6 && c ? c + a : a) + b;
+    list.add(name);
+  }
+  $("#out").textContent = Array.from(list).join("\n");
+});
+</script>
+</body>
+</html>
