@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>K-Pop Aegyo Caption Maker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Aegyo Caption Maker</nav>
+  <h1>Cute captions for posts</h1>
+  <p class="small">Pick cuteness level and emojis. Get six options.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Cuteness</label>
+      <select id="level"><option>Low</option><option selected>Medium</option><option>High</option></select>
+
+      <label class="label">Topic word</label>
+      <input class="input" id="topic" placeholder="e.g., comeback, selca" />
+
+      <label class="label">Use emojis</label>
+      <select id="emj"><option>Yes</option><option>No</option></select>
+
+      <div class="actions">
+        <button class="btn" id="run">Make captions</button>
+        <button class="btn" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Captions</div>
+      <div id="out" class="output"></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+$("#run").addEventListener("click", () => {
+  const lvl = $("#level").value;
+  const t = $("#topic").value || "selca";
+  const useEmj = $("#emj").value === "Yes";
+  const seed = seeded(lvl + "|" + t + "|" + useEmj);
+  const ends = ["day","time","mood","vibes","magic","moment"];
+  const pick = () => ends[Math.floor(seed()*ends.length)];
+  const em = useEmj ? ["✨","💗","🎀","🌸","🫶","💫"] : [""];
+  const e = () => em[Math.floor(seed()*em.length)];
+  const cute = {
+    Low:    ["soft","sweet","fresh","clean","bright","calm"],
+    Medium: ["cute","fluffy","sparkly","pink","uwu","blush"],
+    High:   ["aegyo overload","squishy","mochi","nyan nyan","kya","bbuing"]
+  }[lvl];
+
+  const out = [];
+  for (let i=0;i<6;i++){
+    out.push(`${t} ${cute[Math.floor(seed()*cute.length)]} ${pick()} ${e()}`.trim());
+  }
+  $("#out").textContent = out.join("\n");
+});
+</script>
+</body>
+</html>
