@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bias Chat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Bias Chat</nav>
+  <h1>Roleplay clean fan chats</h1>
+  <p class="small">Pick tone and topic. Get lines to copy into your favorite AI.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Bias name</label>
+      <input class="input" id="idol" placeholder="e.g., Jisoo" />
+
+      <label class="label">Tone</label>
+      <select id="tone">
+        <option>Sweet</option>
+        <option>Cheerful</option>
+        <option>Cool</option>
+        <option>Playful</option>
+      </select>
+
+      <label class="label">Topic</label>
+      <select id="topic">
+        <option>Comeback teaser</option>
+        <option>Concert prep</option>
+        <option>Study motivation</option>
+        <option>Birthday wishes</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn" id="run">Generate lines</button>
+        <button class="btn" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Prompt lines</div>
+      <div id="out" class="output"></div>
+      <p class="small">Use these lines in ChatGPT or any free chat tool.</p>
+    </aside>
+  </div>
+</main>
+
+<script>
+$("#run").addEventListener("click", () => {
+  const idol = $("#idol").value || "Your bias";
+  const tone = $("#tone").value;
+  const topic = $("#topic").value;
+  const lines = [
+`System: You are a friendly idol persona, safe for all ages.`,
+`Style: ${tone}. Length: 1 to 2 sentences per reply.`,
+`Topic: ${topic}. Avoid real personal claims.`,
+`Start: "${idol}: Hey, thanks for cheering today. What are you up to?"`
+  ];
+  $("#out").textContent = lines.join("\n");
+});
+</script>
+</body>
+</html>
