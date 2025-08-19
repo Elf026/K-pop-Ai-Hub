@@ -1,104 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>K-Pop AI Lab • 8 Free Tools</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop AI Tools | Enhance Your Fandom Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d94;
+            --primary-dark: #e04584;
+            --secondary: #5b5bff;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fefefe;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: white;
+            margin: 0;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav a:hover, nav a.active {
+            color: #ffeb3b;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffeb3b;
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.8)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3') center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 77, 148, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Tools Section */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0 4rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-body h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .card-body p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .card-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--light-gray);
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.7rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .card-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 0;
+            margin-top: 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b3b3b3;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="index.html">K-Pop AI Lab</a>
-      <nav class="nav">
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-        <button id="themeToggle" aria-label="Toggle theme">○</button>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <h1>8 AI tools for K-Pop fans</h1>
-        <p>Free. Fast. Built for creativity.</p>
-        <div class="search-row">
-          <input id="toolSearch" type="search" placeholder="Search tools, try bias, name, playlist" />
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star logo-icon"></i>
+                    <h1>K-Pop AI Tools</h1>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Revolutionize Your K-Pop Experience</h2>
+            <p>Discover our collection of AI-powered tools designed to enhance your K-Pop fandom journey. From creating unique content to personalized experiences, we have everything a dedicated fan needs.</p>
+            <div class="hero-btns">
+                <a href="#tools" class="btn">Explore Tools</a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
     </section>
 
-    <section id="tools" class="cards wrap">
-      <!-- Card 1 -->
-      <article class="card" data-tags="outfit style fashion analyzer">
-        <h2>Idol Outfit Style Creator</h2>
-        <p>Plan outfits inspired by your bias. Get color, vibe, and accessory tips.</p>
-        <a class="btn" href="tool1.html">Open</a>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="card" data-tags="chat bias chatbot conversation">
-        <h2>Bias Chat</h2>
-        <p>Roleplay safe, fan-friendly chats. Prebuilt lines, tone, and prompts.</p>
-        <a class="btn" href="tool2.html">Open</a>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="card" data-tags="name stage generator kpop">
-        <h2>Stage, K-Pop Name Generator</h2>
-        <p>Create stage names by vibe, syllables, and concept.</p>
-        <a class="btn" href="tool3.html">Open</a>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="card" data-tags="compatibility quiz love match">
-        <h2>Idol Compatibility Quiz</h2>
-        <p>Answer quick questions. See a playful score with tips.</p>
-        <a class="btn" href="tool4.html">Open</a>
-      </article>
-
-      <!-- Card 5 -->
-      <article class="card" data-tags="aegyo caption instagram tiktok">
-        <h2>K-Pop Aegyo Caption Maker</h2>
-        <p>Get cute, short captions with emoji options.</p>
-        <a class="btn" href="tool5.html">Open</a>
-      </article>
-
-      <!-- Card 6 -->
-      <article class="card" data-tags="look alike finder face twin">
-        <h2>Idol Look-Alike Finder</h2>
-        <p>Describe your features. Get top three idol look matches.</p>
-        <a class="btn" href="tool6.html">Open</a>
-      </article>
-
-      <!-- Card 7 -->
-      <article class="card" data-tags="playlist music songs spotify youtube">
-        <h2>K-Pop Playlist Maker</h2>
-        <p>Pick mood and era. Get a ready list to copy.</p>
-        <a class="btn" href="tool7.html">Open</a>
-      </article>
-
-      <!-- Card 8 -->
-      <article class="card" data-tags="nickname pet name fandom">
-        <h2>Idol Nickname Creator</h2>
-        <p>Mix traits and vibes. Get catchy nicknames fast.</p>
-        <a class="btn" href="tool8.html">Open</a>
-      </article>
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Tools for K-Pop Fans</h2>
+            </div>
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-tshirt card-icon"></i>
+                        <h3>Idol Outfit Creator</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Design and analyze outfits inspired by your favorite K-Pop idols. Create unique styles and see how they match different concepts.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool1.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 2 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-comments card-icon"></i>
+                        <h3>Bias Chat</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Chat with an AI version of your favorite K-Pop idol. Experience personalized conversations and interactions.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool2.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 3 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-id-card card-icon"></i>
+                        <h3>Stage Name Generator</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Generate your perfect K-Pop stage name based on your personality, birthdate, and preferences.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool3.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 4 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-heart card-icon"></i>
+                        <h3>Idol Compatibility Quiz</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Discover which K-Pop idol matches your personality and preferences through our fun compatibility quiz.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool4.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 5 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-smile card-icon"></i>
+                        <h3>Aegyo Caption Maker</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Create adorable captions and messages in the aegyo style popularized by K-Pop idols.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool5.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 6 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-user card-icon"></i>
+                        <h3>Idol Look-Alike Finder</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Find out which K-Pop idol you resemble the most by uploading your photo.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool6.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 7 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-music card-icon"></i>
+                        <h3>K-Pop Playlist Maker</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Generate personalized K-Pop playlists based on your mood, favorite groups, and listening habits.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool7.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 8 -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <i class="fas fa-signature card-icon"></i>
+                        <h3>Idol Nickname Creator</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Generate creative and meaningful nicknames for your favorite K-Pop idols based on their traits and personalities.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="tool8.html" class="card-btn">Try Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="about" class="wrap about">
-      <h2>About this site</h2>
-      <p>Simple tools for fans. 100 percent client side. No signup. No tracking.</p>
-      <p>Built with plain HTML, CSS, and JavaScript. Works on GitHub Pages.</p>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Tools</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt feature-icon"></i>
+                    <h3>AI-Powered</h3>
+                    <p>Our tools leverage advanced AI to deliver personalized experiences for every K-Pop fan.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock feature-icon"></i>
+                    <h3>Privacy First</h3>
+                    <p>We prioritize your privacy and never share your data with third parties.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sync-alt feature-icon"></i>
+                    <h3>Always Updated</h3>
+                    <p>Our tools are constantly updated with the latest K-Pop trends and groups.</p>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>© <span id="year"></span> K-Pop AI Lab. For fun and education.</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>K-Pop AI Tools</h3>
+                    <p>Enhancing your K-Pop fandom experience through innovative AI-powered tools and features.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@kpopaitools.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Seoul, South Korea</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 K-Pop AI Tools. All rights reserved. This is a fan project, not affiliated with any entertainment company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('show');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
