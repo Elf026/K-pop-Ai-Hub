@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idol Outfit Creator | K-Pop AI Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse the same styles from index.html */
+        /* ... (copy all the CSS from index.html) ... */
+        
+        /* Additional styles for tool detail page */
+        .tool-detail {
+            padding: 4rem 0;
+        }
+        
+        .tool-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .tool-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .tool-preview {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .tool-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tool-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .tool-steps {
+            margin: 3rem 0;
+        }
+        
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-cta {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-btn {
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star logo-icon"></i>
+                    <h1>K-Pop AI Tools</h1>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tool Detail Section -->
+    <section class="tool-detail">
+        <div class="container">
+            <div class="tool-hero">
+                <div class="tool-info">
+                    <h1 class="tool-title">Idol Outfit Creator</h1>
+                    <p class="tool-description">Design and analyze outfits inspired by your favorite K-Pop idols. Create unique styles and see how they match different concepts.</p>
+                    <p>Our AI-powered tool helps you create stunning outfits that capture the essence of K-Pop fashion. Whether you're looking to replicate your bias's iconic look or create something entirely new, this tool has you covered.</p>
+                </div>
+                <div class="tool-preview">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-tshirt" style="font-size: 4rem; color: var(--primary);"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Create Your Outfit Now</h3>
+                    <p style="text-align: center; margin-bottom: 2rem;">Upload a photo or choose from our templates to get started.</p>
+                    <div style="background: var(--light-gray); border-radius: 8px; padding: 2rem; text-align: center; margin-bottom: 1.5rem;">
+                        <p>Outfit Preview Area</p>
+                    </div>
+                    <button class="card-btn" style="width: 100%;">Generate Outfit</button>
+                </div>
+            </div>
+            
+            <div class="tool-steps">
+                <h2 style="text-align: center; margin-bottom: 2rem;">How It Works</h2>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose Your Inspiration</h3>
+                        <p>Select from a wide range of K-Pop idols, groups, or eras to inspire your outfit design. Our database includes thousands of iconic K-Pop looks.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Customize Your Design</h3>
+                        <p>Use our intuitive interface to mix and match clothing items, colors, and accessories. The AI will suggest complementary items based on current K-Pop fashion trends.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Analyze & Refine</h3>
+                        <p>Our AI analyzes your design for style consistency, color harmony, and trend alignment. Get suggestions for improvements to perfect your look.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Save & Share</h3>
+                        <p>Save your creations to your profile, download high-quality images, or share directly to social media to show off your K-Pop fashion sense.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-cta">
+                <a href="#" class="btn cta-btn">Start Creating Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>K-Pop AI Tools</h3>
+                    <p>Enhancing your K-Pop fandom experience through innovative AI-powered tools and features.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@kpopaitools.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Seoul, South Korea</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 K-Pop AI Tools. All rights reserved. This is a fan project, not affiliated with any entertainment company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reuse the same JavaScript from index.html
+        // ... (copy the JS from index.html) ...
+    </script>
+</body>
+</html>
