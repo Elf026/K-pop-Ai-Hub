@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idol Outfit Style Creator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Idol Outfit Style Creator</nav>
+  <h1>Plan a stage-ready outfit</h1>
+  <p class="small">Input vibe, colors, and items. Get a styled look list.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Vibe</label>
+      <select id="vibe">
+        <option>Girl crush</option>
+        <option>Soft pastel</option>
+        <option>High teen</option>
+        <option>Street</option>
+        <option>Elegant</option>
+        <option>Retro</option>
+      </select>
+
+      <label class="label">Main colors, comma separated</label>
+      <input class="input" id="colors" placeholder="black, pink, silver" />
+
+      <label class="label">Items you own</label>
+      <textarea id="items" placeholder="crop jacket, pleated skirt, boots"></textarea>
+
+      <div class="actions">
+        <button class="btn" id="run">Create outfit</button>
+        <button class="btn" id="copy" type="button" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Result</div>
+      <div id="out" class="output"></div>
+      <p class="small">Tip. Add accessories for balance, like hair bows or chains.</p>
+    </aside>
+  </div>
+</main>
+
+<script>
+document.getElementById("run").addEventListener("click", () => {
+  const vibe = $("#vibe").value;
+  const colors = $("#colors").value.split(",").map(s => s.trim()).filter(Boolean);
+  const items = $("#items").value.split(",").map(s => s.trim()).filter(Boolean);
+  const add = (arr, n, seed) => {
+    const r = [];
+    while (r.length < n && arr.length) {
+      const i = Math.floor(seed()*arr.length);
+      r.push(arr.splice(i,1)[0]);
+    }
+    return r;
+  };
+  const seed = seeded([vibe, colors.join("-"), items.join("-")].join("|"));
+  const accents = ["pearl choker","charm bracelet","layered chains","bow hairpin","beret","arm warmers","mesh socks","knee socks","cap","fingerless gloves","waist chain","ribbon belt"];
+  const shoes  = ["platform boots","mary janes","sneakers","knee boots","ankle boots","loafer heels"];
+  const tops   = ["cropped blazer","graphic tee","sparkle cardigan","corset top","ruffle blouse","hoodie","mesh top"];
+  const bottoms= ["pleated skirt","skort","cargo pants","wide jeans","tennis skirt","mini skirt","tailored shorts"];
+
+  const pickAcc = add([...accents], 3, seed);
+  const pickTop = add([...tops], 1, seed);
+  const pickBot = add([...bottoms], 1, seed);
+  const pickSho = add([...shoes], 1, seed);
+
+  const palette = colors.length ? colors : ["black","white","pink"];
+
+  const lines = [
+    `Vibe: ${vibe}`,
+    `Palette: ${palette.join(", ")}`,
+    `Top: ${pickTop[0]}`,
+    `Bottom: ${pickBot[0]}`,
+    `Shoes: ${pickSho[0]}`,
+    `Accessories: ${pickAcc.join(", ")}`,
+    items.length ? `Use from your closet: ${items.join(", ")}` : `Closet tip: add one metallic piece`
+  ];
+  $("#out").textContent = lines.join("\n");
+});
+</script>
+</body>
+</html>
