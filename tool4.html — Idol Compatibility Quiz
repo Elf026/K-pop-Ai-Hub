@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idol Compatibility Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Idol Compatibility Quiz</nav>
+  <h1>Playful match score</h1>
+  <p class="small">Answer three quick questions. Get a fun score.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Pick an idol</label>
+      <input class="input" id="idol" placeholder="e.g., Jungkook" />
+
+      <label class="label">Preferred vibe</label>
+      <select id="vibe">
+        <option>Energetic</option><option>Chill</option><option>Artistic</option><option>Sporty</option>
+      </select>
+
+      <label class="label">Pick a weekend plan</label>
+      <select id="plan">
+        <option>Practice dance</option><option>Live stream</option><option>Cafe and books</option><option>Gym</option>
+      </select>
+
+      <label class="label">Favorite concept</label>
+      <select id="concept">
+        <option>Dark</option><option>Bright</option><option>Dreamy</option><option>Street</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn" id="run">Get score</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Result</div>
+      <div id="out" class="output"></div>
+      <p class="small">For fun, not real life.</p>
+    </aside>
+  </div>
+</main>
+
+<script>
+$("#run").addEventListener("click", () => {
+  const seed = seeded($("#idol").value + "|" + $("#vibe").value + "|" + $("#plan").value + "|" + $("#concept").value);
+  const score = Math.floor(seed()*41) + 60; // 60 to 100
+  const tips = [
+    "Share playlists.",
+    "Learn a chorus.",
+    "Try a dance challenge.",
+    "Support with kind comments."
+  ];
+  const tip = tips[Math.floor(seed()*tips.length)];
+  $("#out").textContent = `Compatibility: ${score}%\nTip: ${tip}`;
+});
+</script>
+</body>
+</html>
