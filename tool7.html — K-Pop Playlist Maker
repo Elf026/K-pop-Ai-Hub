@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>K-Pop Playlist Maker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / K-Pop Playlist Maker</nav>
+  <h1>Build a 10-track set</h1>
+  <p class="small">Pick mood and era. Get a list to copy to Spotify or YouTube.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Mood</label>
+      <select id="mood"><option>Hype</option><option>Chill</option><option>Romantic</option><option>Dark</option></select>
+
+      <label class="label">Era</label>
+      <select id="era"><option>2nd Gen</option><option>3rd Gen</option><option selected>4th Gen</option><option>Mixed</option></select>
+
+      <label class="label">Must include artist, optional</label>
+      <input class="input" id="must" placeholder="e.g., BTS or NewJeans" />
+
+      <div class="actions">
+        <button class="btn" id="run">Make playlist</button>
+        <button class="btn" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Playlist</div>
+      <div id="out" class="output"></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+const pool = {
+  "Hype|4th Gen": ["NewJeans - Super Shy","LE SSERAFIM - ANTIFRAGILE","ITZY - LOCO","Aespa - Next Level","Stray Kids - God's Menu","TXT - Good Boy Gone Bad","IVE - I AM","ATEEZ - BOUNCY","(G)I-DLE - Nxde","ENHYPEN - Drunk-Dazed"],
+  "Chill|4th Gen": ["NewJeans - Ditto","TXT - Blue Hour","Aespa - Life's Too Short","STAYC - ASAP","IVE - After LIKE","Treasure - Darari","XG - Left Right","Fromis_9 - DM","Kep1er - Wing Wing","NMIXX - Love Me Like This"],
+  "Romantic|4th Gen": ["NewJeans - OMG","TXT - CROWN","Aespa - Forever","STAYC - Teddy Bear","IVE - Love Dive","Stray Kids - 24 to 25","(G)I-DLE - HWAA","ENHYPEN - Polaroid Love","IVE - Eleven","XG - Shooting Star"],
+  "Dark|4th Gen": ["Aespa - Savage","LE SSERAFIM - UNFORGIVEN","Stray Kids - VENOM","TXT - PUMA","ATEEZ - Wonderland","ITZY - Not Shy","(G)I-DLE - TOMBOY","ENHYPEN - Given-Taken","XG - Mascara","NMIXX - DICE"],
+  "Hype|Mixed": ["BIGBANG - BANG BANG BANG","EXO - Monster","BTS - Fire","BLACKPINK - DDU-DU DDU-DU","SEVENTEEN - HIT","TWICE - Feel Special","ATEEZ - Wonderland","TXT - Chasing That Feeling","ITZY - Sneakers","NewJeans - ETA"]
+};
+$("#run").addEventListener("click", () => {
+  const key = `${$("#mood").value}|${$("#era").value}`;
+  const list = pool[key] || pool["Hype|Mixed"];
+  const must = $("#must").value.trim().toLowerCase();
+  const rng = seeded(key + "|" + must);
+  // Shuffle
+  const picks = [...list].sort(()=>rng()-.5).slice(0,10);
+  if (must) {
+    const hit = list.find(t => t.toLowerCase().includes(must));
+    if (hit && !picks.includes(hit)) picks[0] = hit;
+  }
+  $("#out").textContent = picks.map((t,i)=>`${i+1}. ${t}`).join("\n");
+});
+</script>
+</body>
+</html>
