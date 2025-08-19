@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stage, K-Pop Name Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">K-Pop AI Lab</a>
+    <nav class="nav"><a href="index.html#tools">Back</a></nav>
+  </div>
+</header>
+
+<main class="wrap page">
+  <nav class="breadcrumb">Tools / Stage, K-Pop Name Generator</nav>
+  <h1>Create a stage name</h1>
+  <p class="small">Pick vibe and length. Get five options.</p>
+
+  <div class="grid-2">
+    <section class="panel">
+      <label class="label">Vibe</label>
+      <select id="vibe">
+        <option>Bold</option>
+        <option>Soft</option>
+        <option>Mystic</option>
+        <option>Retro</option>
+        <option>Futuristic</option>
+      </select>
+
+      <label class="label">Syllables</label>
+      <select id="syll">
+        <option>1</option><option selected>2</option><option>3</option>
+      </select>
+
+      <label class="label">Start letter, optional</label>
+      <input class="input" id="start" placeholder="e.g., J" />
+
+      <div class="actions">
+        <button class="btn" id="run">Generate</button>
+        <button class="btn" onclick="copyText('out')">Copy</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="badge">Names</div>
+      <div id="out" class="output"></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+const bank = {
+  Bold: ["JIN","KIX","RYU","MAX","NOVA","ZEK","LEX","JAX","ROK","KYO","RIK","ZIN"],
+  Soft: ["Mina","Yuna","Sori","Hani","Ari","Nari","Lumi","Dami","Sena","Yeri","Mori","Nami"],
+  Mystic: ["Aura","Lune","Nyx","Eve","Vela","Kira","Sora","Iris","Vivi","Lira","Nari","Nova"],
+  Retro: ["Bibi","Dodo","Kiki","Lulu","Momo","Rara","Coco","Gigi","Nini","Zizi","Pipi","Riri"],
+  Futuristic: ["Vex","Cyra","Kairo","Zetta","Aero","Vanta","Neon","Flux","Voxa","Quin","Kova","Xylo"]
+};
+$("#run").addEventListener("click", () => {
+  const vibe = $("#vibe").value;
+  const syll = parseInt($("#syll").value, 10);
+  const start = ($("#start").value || "").toLowerCase();
+  const rnd = seeded(vibe + "|" + syll + "|" + start);
+  const out = [];
+  while (out.length < 5) {
+    const base = bank[vibe][Math.floor(rnd()*bank[vibe].length)];
+    let name = base;
+    // Add or split for syllables
+    if (syll === 2 && base.length <= 3) name = base + (rnd()>.5?"a":"i");
+    if (syll === 3) name = base + (rnd()>.5?"-ri":"-na");
+    if (start && name[0].toLowerCase() !== start) continue;
+    if (!out.includes(name)) out.push(name);
+  }
+  $("#out").textContent = out.join("\n");
+});
+</script>
+</body>
+</html>
